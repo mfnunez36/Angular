@@ -1,0 +1,124 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <br />
+  <h1>PIPES</h1>
+  <hr />
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Variable</th>
+        <th>Pipe</th>
+        <th>Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> {{ nombre }} </td>
+        <td> uppercase </td>
+        <td> {{ nombre | uppercase }}</td>
+      </tr>
+      <tr>
+        <td> {{ nombre }} </td>
+        <td> lowercase </td>
+        <td> {{ nombre | lowercase }}</td>
+      </tr>
+      <tr>
+        <td> {{ nombre }} </td>
+        <td> slice : 3 </td>
+        <td> {{ nombre | slice:3 }}</td><!--slice es para cortar texto arreglos u objetos-->
+      </tr>
+      <tr>
+        <td> {{ nombre }} </td>
+        <td> slice : 0:3 </td>
+        <td> {{ nombre | slice : 0:3 }}</td><!--slice es para cortar texto arreglos-->
+      </tr>
+      <tr>
+        <td> {{ PI }} </td>
+        <td> number:'3.0-0' </td>
+        <td> {{ PI | number:'3.0-0' }}</td><!--Pipe Decimal "number" Manejar decimales y numeros-->
+      </tr>
+      <tr>
+        <td> {{ PI }} </td>
+        <td> number:'1.0-2' </td>
+        <td> {{ PI | number:'1.0-2' }}</td><!--Pipe Decimal "number" Manejar decimales y numeros-->
+      </tr>
+      <tr>
+        <td> {{ a }} </td>
+        <td> percent </td>
+        <td> {{ a | percent }}</td><!--Pipe Porcentaje manejar porcentajes con formato-->
+      </tr>
+      <tr>
+        <td> {{ a }} </td>
+        <td> percent:'2.2-2' </td>
+        <td> {{ a | percent:'2.2-2' }}</td><!--Pipe Porcentaje manejar porcentajes con formato-->
+      </tr>
+      <tr>
+        <td> {{ salario }} </td>
+        <td> currency </td>
+        <td> {{ salario | currency }}</td><!--Pipe Currency manejar formatos de monedas-->
+      </tr>
+      <tr>
+        <td> {{ salario }} </td>
+        <td> currency:'EUR' </td>
+        <td> {{ salario | currency:'EUR' }}</td><!--Pipe Currency manejar formatos de monedas-->
+      </tr>
+      <tr>
+        <td> {{ salario }} </td>
+        <td> currency:'EUR':false </td>
+        <td> {{ salario | currency:'EUR':false }}</td><!--Pipe Currency manejar formatos de monedas-->
+      </tr>
+      <tr>
+        <td> {{ valorPromesa }} </td>
+        <td> async </td>
+        <td> {{ valorPromesa | async }}</td><!--Pipe Currency manejar formatos de monedas-->
+      </tr>
+      <tr>
+        <td> {{ fecha }} </td>
+        <td> date </td>
+        <td> {{ fecha | date }}</td><!--Pipe date manejar formatos de fechas-->
+      </tr>
+      <tr>
+        <td> {{ fecha }} </td>
+        <td> date:'medium' </td>
+        <td> {{ fecha | date:'medium' }}</td><!--Pipe date manejar formatos de fechas-->
+      </tr>
+      <tr>
+        <td> {{ fecha }} </td>
+        <td> date:'MMMM - dd' </td>
+        <td> {{ fecha | date:'MMMM - dd' }}</td><!--Pipe date manejar formatos de fechas-->
+      </tr>
+      <tr>
+        <td> {{ nombre2 }} </td>
+        <td> CapitalizadoPipe </td>
+        <td> {{ nombre2 | capitalizado }}</td><!--Pipe date manejar formatos de fechas-->
+      </tr>
+
+      <tr>
+        <td> {{ nombre }} </td>
+        <td>
+          contrasena:{{ activar }}
+          <br />
+          <button (click)="activar = !activar" type="button" class="btn btn-outline-primary"> Activar/Desactivar </button>
+        </td>
+        <td> {{ nombre | contrasena:activar }}</td><!--Pipe date manejar formatos de fechas-->
+      </tr>
+
+    </tbody>
+  </table>
+
+  <h4>Slice</h4>
+  <ul>
+    <li *ngFor="let item of arreglo | slice:5:20">{{ item }}</li>
+  </ul>
+
+  <h4>JSON</h4>
+  <br />
+  <pre>{{ heroe | json }}</pre>
+
+
+  <h4>YOUTUBE Video</h4>
+  <hr />
+  <iframe width="560" height="315" [src]="clavevideo | domseguro:'https://www.youtube.com/embed/'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <br />
+</div>
