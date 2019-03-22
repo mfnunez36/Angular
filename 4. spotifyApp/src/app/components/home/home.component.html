@@ -1,0 +1,3 @@
+<app-loading class="m-5" *ngIf="loading"></app-loading>
+<app-error *ngIf="error" [mensaje]="mensaje"></app-error>
+<app-tarjetas [items]="canciones"></app-tarjetas>
