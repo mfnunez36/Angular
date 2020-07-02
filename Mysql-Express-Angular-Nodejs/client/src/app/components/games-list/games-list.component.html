@@ -1,0 +1,13 @@
+<div class="col-md-4" *ngFor="let juego of games">
+    <div class="card text-center">
+        <div class="card-herader text-white bg-dark d-flex justify-content-between alingn-items-center">
+            {{ juego.title }}
+            <button class="btn btn-danger" (click)="delete(juego.id)"> <i class="fa-trash-alt"></i> </button>
+        </div>
+        <img [src]="juego.img == '' ? 'assets/img/noimage.png' : juego.img" alt="" class="card-img-top">
+        <div class="card-body">
+            <p>{{ juego.description }}</p>
+            <a [routerLink]="['/games/edit', juego.id]" class="btn btn-info btn-block"> EDITAR</a>
+        </div>
+    </div>
+</div>
