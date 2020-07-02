@@ -1,2 +1,2 @@
-[submodule "Mysql-Express-Angular-Nodejs/client"]
+[submodule "/client"]
 	ignore = untracked
