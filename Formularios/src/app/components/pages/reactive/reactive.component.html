@@ -1,0 +1,102 @@
+<h4>Formularios <small> Reactivos </small></h4>
+<hr />
+<!-- En formularios reactivos utilizamos la propiedad [formGroup]="form" para obtener los datos del formulario -->
+<form autocomplete="off" [formGroup]="form" (ngSubmit)="guardar()">
+  <div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col">
+        <!-- para asignar el valor del input debemos utilizar formControlName para identificar el campo en base a la creacion del formulario en el componente  -->
+        <!-- con el metodo form.get() podemos obtener el estado del input para validarlo -->
+        <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="form.get('nombre').invalid && form.get('nombre').touched" />
+        <small *ngIf="validaNombre" class="form-text text-danger">Debe ingresar 5 letras para el nombre</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col">
+        <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido" [class.is-invalid]="validaApellido" />
+        <small *ngIf="validaApellido" class="form-text text-danger">Debe ingresar 5 letras para el apellido</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col">
+      <!-- aqui podemos ver que utilizamos solo una variable la cual devuelve verdadero si es valido el campo y esto se hace desde el componente -->
+      <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="email" [class.is-invalid]="validaEmail" />
+      <small *ngIf="validaEmail" class="form-text text-danger">Debe ingresar un correo valido</small>
+    </div>
+  </div>
+
+  <!-- este div tiene una referencia a direccion con la propiedad formGroupName para poder trabajar con sus dos parametros ciudad y provincia -->
+  <div class="form-group row" formGroupName="direccion">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="form-row col">
+      <div class="col">
+        <input class="form-control" type="text" placeholder="Ciudad" formControlName="ciudad" [class.is-invalid]="validaCiudad" >
+      </div>
+      <div class="col">
+        <input  class="form-control" type="text" placeholder="Provincia" formControlName="provincia" [class.is-invalid]="validaProvincia" >
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col">
+      <button type="submit" class="btn btn-outline-primary btn-block">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col">
+      <button type="button" class="btn btn-outline-primary btn-block" (click)="limpiarData()">
+        Limpiar Formulario
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead class="thead-dark text-center">
+          <tr>
+            <th>ID</th>
+            <th>HOBBY</th>
+            <th>BORRAR</th>
+          </tr>
+        </thead>
+        <!-- se utiliza formArrayName para identificar el padre del input y verificar los controls del formulario -->
+        <tbody formArrayName="hobbies">
+          <tr *ngFor="let item of hobbies.controls; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              <!-- para poder obtener los valores ingresados en los inputs debemos utilizar [formControlName] para obtener el valor pero para ser unico debe ser i -->
+              <input class="form-control" type="text" placeholder="Escribe un Hobby" [formControlName]="i">
+            </td>
+            <td>
+              <button class="btn btn-danger" type="button" (click)="borrarHobby(i)">Borrar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-primary btn-block" (click)="agregarHobby()">
+        Agregar
+      </button>
+
+    </div>
+  </div>
+
+</form>
+<hr>
+<pre>
+  Valido: {{ form.valid }}
+  Estado: {{ form.status }}
+  Valores: {{ form.value | json }}
+</pre>

@@ -1,0 +1,70 @@
+<h4>Formulario <small> por Template </small></h4>
+<hr />
+<!-- Para obtener los datos del formulario utilizamos una referencia local #form="ngForm" y se lo pasamos al metodo submit para manejar la data -->
+<form autocomplete="off" (ngSubmit)="guardar( form )" #form="ngForm">
+  <div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Nombre</label>
+      <div class="col-8">
+        <!-- Se utiliza [ngModel]="" cuando el input solo recibira un valor y no emitira valores -->
+        <!-- Se utiliza [(ngModel)]="" cuando el input recibira y emitira valores -->
+        <!-- Se utiliza [class.nombreClaseDeStylo] cuando queremos cambiar la clase de estilo de forma dinamica o con alguna condicion
+        pero se debe referenciar el input a validar con '#referencia=ngModel' referenciando al ngModel del input  -->
+
+        <!-- todas las propiedades del HTML van primero que las propiedades de Angular -->
+        <input class="form-control" type="text" name="nombre" placeholder="Nombre" minlength="5" required [class.is-invalid]="nombre.invalid && nombre.touched" [ngModel]="usuario.nombre" #nombre="ngModel"/>
+        <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">Debe ingresar 5 letras</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Apellido</label>
+      <div class="col-8">
+        <input class="form-control" type="text" name="apellido" placeholder="Apellido" minlength="5" required [class.is-invalid]="apellido.invalid && apellido.touched" [ngModel]="usuario.apellido" #apellido="ngModel"/>
+        <small *ngIf="apellido.invalid && apellido.touched" class="form-text text-danger">Debe ingresar 5 letras</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-8">
+      <input class="form-control" type="email" name="email" placeholder="Correo electrónico" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [class.is-invalid]="email.invalid && email.touched" [ngModel]="usuario.email" #email="ngModel"/>
+      <small *ngIf="email.invalid && email.touched" class="form-text text-danger">Debe ingresar un correo valido</small>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">País</label>
+    <div class="col-8">
+      <!-- se utiliza [disabled]="condicion" para evaluar y deshabilitar el input -->
+      <!-- utilizamos el (ngModel)="selected" el cual nos permite utilizar el valor del option por defecto -->
+      <select class="form-control" name="pais" required [class.is-invalid]="pais.invalid && pais.touched" [ngModel]="selected" #pais="ngModel">
+        <option *ngFor="let pais of paises" [value]="pais.alpha3Code">{{ pais.nombre }}</option>
+      </select>
+      <small *ngIf="pais.invalid && pais.touched" class="form-text text-danger">Debe Seleccionar un País</small>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Género</label>
+    <div class="col-8">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="genero" value="M" required [class.is-invalid]="genero.invalid && genero.touched" [ngModel]="usuario.genero" #genero="ngModel">
+        <label class="form-check-label">Masculino</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="genero" value="F" required [class.is-invalid]="genero.invalid && genero.touched" [ngModel]="usuario.genero" #genero="ngModel">
+        <label class="form-check-label">Femenino</label>
+      </div>
+      <small *ngIf="genero.invalid && genero.touched" class="form-text text-danger">Debe Seleccionar un Género</small>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary btn-block"> Guardar </button>
+    </div>
+  </div>
+</form>
