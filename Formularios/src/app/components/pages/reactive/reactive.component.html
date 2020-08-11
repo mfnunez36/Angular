@@ -31,6 +31,20 @@
     </div>
   </div>
 
+  <div class="form-group row" formGroupName="passwords">
+    <label class="col-2 col-form-label">Password</label>
+    <div class="form-row col">
+      <div class="col">
+        <input class="form-control" type="password" placeholder="Escriba su Contraseña" formControlName="password1" [class.is-invalid]="validaPassword1" >
+        <small *ngIf="validaPassword1" class="form-text text-danger">Debe ingresar una contraseña valida.</small>
+      </div>
+      <div class="col">
+        <input  class="form-control" type="password" placeholder="Repita la Contraseña" formControlName="password2" [class.is-invalid]="validaPassword2" >
+        <small *ngIf="validaPassword2" class="form-text text-danger">Debe ingresar la misma contraseña.</small>
+      </div>
+    </div>
+  </div>
+
   <!-- este div tiene una referencia a direccion con la propiedad formGroupName para poder trabajar con sus dos parametros ciudad y provincia -->
   <div class="form-group row" formGroupName="direccion">
     <label class="col-2 col-form-label">Correo</label>
