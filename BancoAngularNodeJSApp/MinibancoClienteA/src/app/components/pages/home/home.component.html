@@ -1,0 +1,75 @@
+<nav class="navbar fixed-top navbar-dark bg-dark">
+  <a class="navbar-brand" href="/home">Bienvenido a tu MiniBanco</a>
+  <button class="btn btn-outline-danger my-2 my-sm-0" type="button" (click)="logout()">
+    Salir
+  </button>
+</nav>
+
+<br>
+<br>
+<br>
+<br>
+
+<form (ngSubmit)="transferir( form )" #form="ngForm">
+  
+  <h2>TRANSFERIR SALIENTE</h2>
+  <hr>
+  <span *ngIf="form.submitted && form.controls['rut'].errors" class="text-danger">El RUT no es válido</span>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">RUT</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="rut" (blur)="maskRut(this)" required placeholder="RUT" [(ngModel)]="transferencia.destino">
+    </div>
+  </div>
+
+  <span *ngIf="form.submitted && form.controls['rut'].errors" class="text-danger">El Monto no es válido</span>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Monto</label>
+    <div class="col-sm-4">
+      <input type="number" min="0" class="form-control" name="monto" required placeholder="Monto" [(ngModel)]="transferencia.monto">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Tipo</label>
+    <div class="col-sm-4">
+      <label class="radio-inline col-sm">
+        <input type="radio" name="tipo" value="ENTRANTE" [(ngModel)]="transferencia.tipo"> Entrante   
+      </label> 
+
+      <label class="radio-inline col-sm">
+        <input type="radio" name="tipo" value="SALIENTE" [(ngModel)]="transferencia.tipo"> Saliente   
+      </label>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Transferir</button>
+</form>
+
+<br><br><br>
+<hr>
+<h3>Listado de Transferencias</h3>
+<br />
+<div class="container">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>CTA DESTINO</th>
+        <th>MONTO</th>
+        <th>TIPO</th>
+        <th>NOMBRE</th>
+        <th>APELLIDO</th>
+        <th>EMAIL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of transferencias[0]">
+        <td>{{ item.cuenta.cuenta }}</td>
+        <td>{{ item.monto }}</td>
+        <td>{{ item.tipo }}</td>
+        <td>{{ item.usuario.nombre }}</td>
+        <td>{{ item.usuario.apellido }}</td>
+        <td>{{ item.usuario.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
