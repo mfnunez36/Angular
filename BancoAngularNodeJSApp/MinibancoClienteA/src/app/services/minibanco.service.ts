@@ -11,7 +11,7 @@ import { TransferenciaModel } from '../models/transferencia.model';
 export class MinibancoService {
 
   // URL API 
-  private api = "https://max-minibanco.herokuapp.com";
+  private api = "*******";
   token: string;
   helper: JwtHelperService;
 
