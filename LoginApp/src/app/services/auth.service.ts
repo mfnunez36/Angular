@@ -7,8 +7,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private url = 'https://identitytoolkit.googleapis.com/v1/accounts:sign';
-  private apiKey = 'AIzaSyCIxJ3i8PNEbC8F_u-Xz-_Y7tN7_bJLh4o';
+  private url = '********';
+  private apiKey = '*********';
   userToken: string;
 
   constructor(private http: HttpClient) { }
