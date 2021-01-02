@@ -1,6 +1,6 @@
-let user = 'sharapp';
-let pass = 'Ix0gSXrRBSDB24AN';
-let dbname= 'ripley';
+let user = '****';
+let pass = '*******';
+let dbname= '*****';
 
 module.exports = {
     'url': `mongodb+srv://${ user }:${ pass }@cluster0.peksg.mongodb.net/${ dbname }?retryWrites=true&w=majority`
