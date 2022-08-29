@@ -1,0 +1,21 @@
+<h1 class="text-center">{{ title }}</h1>
+<div class="container">
+  <div class="row">
+    <form (ngSubmit)="submitSearch()">
+      <div class="form-group col-xs-12">
+        <input type="text" name="searchString" class="form-control" id="search" placeholder="Búsqueda de super-héroe" [(ngModel)]="searchString">
+      </div>
+    </form>
+    <div *ngFor="let heroe of listheroes$ | async" class="col-xs-12 col-sm-6 col-md-3">
+      <a (click)="go_to(heroe.id)" class="hero-entry" [style.border-color]="heroesService['group_colors'][heroe.teamColor]" [style.background-image]="'url(' + heroe.thumbnail.path + '.' + heroe.thumbnail.extension + ')'">
+        <span>{{heroe.name}}</span>
+      </a>
+    </div>
+
+    <div class="paginator col-xs-12">
+      <a class="paginator-prev" *ngIf="heroesService.page > 0" (click)="prevPage()">Prev</a>
+      Página {{heroesService.page + 1}} de {{heroesService.total}}
+      <a class="paginator-next" *ngIf="heroesService.page < heroesService.total - 1" (click)="nextPage()">Next</a>
+    </div>
+  </div>
+</div>
